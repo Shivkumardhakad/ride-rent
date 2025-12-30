@@ -16,7 +16,7 @@ public class UserDAO {
         this.conn = DBConnection.getConnection();
     }
 
-    // User Register karne ka method
+   
     public boolean registerUser(User user) {
         boolean f = false;
         try {
@@ -27,12 +27,12 @@ public class UserDAO {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
             ps.setString(3, user.getPassword());
-            ps.setString(4, "CUSTOMER"); // Default role hum CUSTOMER rakhenge
+            ps.setString(4, "CUSTOMER"); // Default role hum CUSTOMER 
             ps.setString(5, user.getPhone());
 
             int i = ps.executeUpdate();
             if (i == 1) {
-                f = true; // Agar insert successful hua
+                f = true; // insert successful hua
             }
         } catch (Exception e) {
             e.printStackTrace();
