@@ -23,7 +23,7 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
-		
+		System.out.println("Register Servlet is working");
 		// 2. User Object banya
 		User user = new User();
 		user.setName(name);
