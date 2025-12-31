@@ -4,6 +4,7 @@ package com.riderent.riderent.Doa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.riderent.riderent.model.User;
 import com.riderent.riderent.util.DBConnection;
@@ -38,5 +39,36 @@ public class UserDAO {
             e.printStackTrace();
         }
         return f;
+    }
+    
+    public User loginUser(String email, String password ) {
+    	
+    	User user=null;
+    	try { String query= "Select  * from users where email=? and password =? ";
+    	      
+    	PreparedStatement ps     = conn.prepareStatement(query);
+    	  
+    	           ps.setString(1, email);
+    	           ps.setString(2, password);
+    		   
+    	      ResultSet rs = ps.executeQuery();
+    	      if(rs.next()) {
+    	    	  user= new User();
+    	    	  user.setId(rs.getInt("id"));
+    	    	  user.setName(rs.getString("name"));
+    	    	  user.setEmail(rs.getString("email"));
+    	    	  user.setPassword(rs.getString("password"));
+    	    	  user.setPhone(rs.getString("phone"));
+    	    	  user.setRole(rs.getString("role"));
+    	    	  
+    	    	
+    	      }
+    		
+    	}catch(Exception e) {
+    		e.printStackTrace();
+    		
+    	}
+    	// agar user mila tho user jaye nai tho null 
+    	return user;
     }
 }
